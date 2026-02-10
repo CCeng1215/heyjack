@@ -1,56 +1,149 @@
-# heyjack
+# HeyJack 🎵
 
-这是一个简约现代风格的音乐播放器项目，旨在提供清爽的界面与良好的使用体验，同时支持多套皮肤（主题）切换以满足个性化需求。
+<p align="center">
+  <img src="public/icon.svg" width="120" alt="HeyJack Logo">
+</p>
 
-**主要特性**
+<p align="center">
+  <strong>一个简约现代的跨平台音乐播放器</strong>
+</p>
 
-- **简约现代界面**：清晰、直观的布局，专注于音乐播放体验。
-- **可更换皮肤**：内置多套皮肤，支持在设置中切换；也可通过简单配置添加自定义皮肤。
-- **基础播放功能**：播放/暂停、上一曲/下一曲、进度拖动、音量控制。
-- **播放列表管理**：创建、编辑和保存播放列表。
-- **响应式设计**：适配桌面与小屏设备的常见分辨率。
+<p align="center">
+  支持 macOS 和 Windows · 轻量级 · 多主题
+</p>
 
-**快速开始**
+---
 
-1. 克隆仓库：
+## ✨ 特性
 
-	git clone <仓库地址>
+- **🎨 简约现代界面** - 参考 Soft Player 设计，清晰直观的布局
+- **🎭 多主题支持** - 内置 5 套精美主题（Light / Dark / Neon / Ocean / Sunset）
+- **🎵 多格式支持** - MP3、FLAC、WAV、OGG、M4A、AAC
+- **📁 本地音乐库** - 扫描文件夹，自动读取音乐元数据
+- **📋 播放列表** - 创建、编辑、管理个人播放列表
+- **⌨️ 快捷键支持** - 空格播放/暂停，方向键控制
+- **💾 轻量打包** - 使用 Tauri 构建，安装包仅 ~10MB
 
-2. 安装依赖（以 Node.js 为例，如果项目使用其它技术栈，请参考对应说明）：
+## 🖼️ 界面预览
 
-	npm install
+### Dark 主题
+```
+┌──────────────────────────────────────────────────────────────┐
+│  🎵 HeyJack          ┌─────────────────────────────────────┐ │
+│                      │                                     │ │
+│  📚 Library          │  Library                    🔍 ⊕   │ │
+│  🎵 Playlists        │  ─────────────────────────────────  │ │
+│  ⚙️ Settings         │  #  Title        Album     Artist   │ │
+│                      │  1  Track 1      Album A   Artist   │ │
+│  ─────────           │  2  Track 2      Album A   Artist   │ │
+│  PLAYLISTS           │  3  Track 3      Album B   Artist   │ │
+│  + My Favorites      │  ...                                │ │
+│                      │                                     │ │
+│                      └─────────────────────────────────────┘ │
+├──────────────────────────────────────────────────────────────┤
+│  🎵  Track Title     ◀◀  ▶  ▶▶     0:00 ━━━━━━━━━━ 3:45  🔊 │
+│      Artist Name          🔀 🔁                              │
+└──────────────────────────────────────────────────────────────┘
+```
 
-3. 启动开发服务器：
+## 🚀 快速开始
 
-	npm start
+### 环境要求
 
-4. 打开浏览器访问：
+- Node.js 18+
+- Rust 1.70+ (用于 Tauri 构建)
+- 系统依赖 (Linux 需要额外安装)
 
-	http://localhost:3000
+### 开发模式
 
-（注：根据项目实际实现，命令和端口可能有所不同，请调整为项目中的真实启动步骤。）
+```bash
+# 克隆仓库
+git clone <repository-url>
+cd heyjack
 
-**皮肤（主题）说明**
+# 安装依赖
+npm install
 
-- 项目内置若干皮肤（例如：light / dark / neon），可在应用的设置或主题面板中进行切换。
-- 添加自定义皮肤：在 `skins/`（或项目中对应的主题目录）中添加新的样式文件，并在主题配置中注册即可。
-- 建议的皮肤要点：保持对比度、在深色/浅色下保证文字可读性、为关键控件提供一致的交互反馈。
+# 启动开发服务器 (仅前端)
+npm run dev
 
-**定制化与开发**
+# 启动 Tauri 开发模式 (完整应用)
+npm run tauri:dev
+```
 
-- UI 组件遵循可复用原则，便于替换或扩展播放器的视觉风格。
-- 若需要集成更多功能（歌词显示、均衡器、在线音乐源等），可在 `docs/` 或 `CONTRIBUTING.md` 中提出建议并提交 PR。
+### 构建发布版本
 
-**演示与截图**
+```bash
+# 构建桌面应用
+npm run tauri:build
+```
 
-- （在此处添加应用截图或演示 GIF，展示默认皮肤与其他皮肤的对比。）
+构建产物位于 `src-tauri/target/release/bundle/`
 
-**贡献**
+## 🎨 主题
 
-- 欢迎提交 issue 或 pull request。请在 PR 中描述变更内容与测试步骤。
+内置 5 套精心设计的主题：
 
-**许可证**
+| 主题 | 描述 | 配色 |
+|------|------|------|
+| **Light** | 明亮清爽 | 白色背景 + 蓝色强调 |
+| **Dark** | 深色护眼 | 深灰背景 + 蓝色强调 |
+| **Neon** | 赛博朋克 | 深紫背景 + 霓虹绿 |
+| **Ocean** | 海洋深邃 | 深蓝背景 + 天蓝色 |
+| **Sunset** | 温暖日落 | 暗红背景 + 橙色 |
 
-- 本项目采用 MIT 许可（或根据实际选择的许可证填写）。
+在设置页面可随时切换主题。
 
-如果你需要我把 README 内容改成更正式的英文版、补充安装示例或加入实际截图占位，请告诉我你希望的格式与细节。
+## ⌨️ 快捷键
+
+| 按键 | 功能 |
+|------|------|
+| `Space` | 播放 / 暂停 |
+| `←` | 上一曲 |
+| `→` | 下一曲 |
+| `↑` | 增加音量 |
+| `↓` | 降低音量 |
+| `M` | 静音 / 取消静音 |
+
+## 🏗️ 技术栈
+
+- **前端**: React 18 + TypeScript + Tailwind CSS
+- **动画**: Framer Motion
+- **状态管理**: Zustand
+- **图标**: Lucide Icons
+- **桌面框架**: Tauri (Rust)
+- **音频处理**: Rodio (Rust)
+- **元数据读取**: Lofty (Rust)
+
+## 📁 项目结构
+
+```
+heyjack/
+├── src/                    # React 前端源码
+│   ├── components/         # UI 组件
+│   ├── store/              # Zustand 状态管理
+│   ├── hooks/              # 自定义 Hooks
+│   ├── types/              # TypeScript 类型定义
+│   └── utils/              # 工具函数
+├── src-tauri/              # Tauri Rust 后端
+│   └── src/
+│       ├── main.rs         # 应用入口
+│       ├── audio.rs        # 音频播放引擎
+│       └── library.rs      # 音乐库扫描
+├── public/                 # 静态资源
+└── package.json
+```
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+1. Fork 本仓库
+2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
+3. 提交更改 (`git commit -m 'Add amazing feature'`)
+4. 推送分支 (`git push origin feature/amazing-feature`)
+5. 创建 Pull Request
+
+## 📄 许可证
+
+MIT License - 详见 [LICENSE](LICENSE) 文件
