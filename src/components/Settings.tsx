@@ -216,6 +216,8 @@ export function Settings() {
               { key: '↑', action: 'Volume up' },
               { key: '↓', action: 'Volume down' },
               { key: 'M', action: 'Mute / Unmute' },
+              { key: 'Ctrl+M', action: 'Toggle Mini Player' },
+              { key: 'Esc', action: 'Exit Mini Player' },
             ].map((shortcut) => (
               <div key={shortcut.key} className="flex items-center gap-2">
                 <kbd

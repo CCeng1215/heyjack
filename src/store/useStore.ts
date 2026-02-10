@@ -11,6 +11,11 @@ interface AppState {
   currentView: ViewType
   setCurrentView: (view: ViewType) => void
 
+  // Mini Mode
+  miniMode: boolean
+  setMiniMode: (mini: boolean) => void
+  toggleMiniMode: () => void
+
   // Library
   tracks: Track[]
   setTracks: (tracks: Track[]) => void
@@ -64,6 +69,11 @@ export const useStore = create<AppState>()(
       // View
       currentView: 'library',
       setCurrentView: (view) => set({ currentView: view }),
+
+      // Mini Mode
+      miniMode: false,
+      setMiniMode: (mini) => set({ miniMode: mini }),
+      toggleMiniMode: () => set((state) => ({ miniMode: !state.miniMode })),
 
       // Library
       tracks: [],

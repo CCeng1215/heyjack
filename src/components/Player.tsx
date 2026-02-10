@@ -10,6 +10,7 @@ import {
   Repeat1,
   Shuffle,
   Music,
+  Minimize2,
 } from 'lucide-react'
 import { useStore } from '../store/useStore'
 import { useAudioPlayer } from '../hooks/useAudioPlayer'
@@ -31,6 +32,7 @@ export function Player() {
     toggleShuffle,
     nextTrack,
     prevTrack,
+    setMiniMode,
   } = useStore()
 
   const { seek } = useAudioPlayer()
@@ -217,8 +219,8 @@ export function Player() {
         </div>
       </div>
 
-      {/* Volume */}
-      <div className="flex items-center gap-2 w-36">
+      {/* Volume & Mini Mode */}
+      <div className="flex items-center gap-2 w-44">
         <motion.button
           onClick={toggleMute}
           className="btn-icon"
@@ -239,13 +241,25 @@ export function Player() {
           step={0.01}
           value={volume}
           onChange={handleVolumeChange}
-          className="w-24 h-1 cursor-pointer"
+          className="w-20 h-1 cursor-pointer"
           style={{
             background: `linear-gradient(to right, var(--accent) ${
               volume * 100
             }%, var(--border) ${volume * 100}%)`,
           }}
         />
+
+        {/* Mini Mode Button */}
+        <motion.button
+          onClick={() => setMiniMode(true)}
+          className="btn-icon ml-1"
+          style={{ color: 'var(--text-secondary)' }}
+          whileHover={{ color: 'var(--accent)' }}
+          whileTap={{ scale: 0.9 }}
+          title="Mini Player (Ctrl+M)"
+        >
+          <Minimize2 className="w-4 h-4" />
+        </motion.button>
       </div>
     </div>
   )

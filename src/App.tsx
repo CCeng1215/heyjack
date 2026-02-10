@@ -1,7 +1,9 @@
 import { useEffect, useCallback } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import { useStore } from './store/useStore'
 import { Sidebar } from './components/Sidebar'
 import { Player } from './components/Player'
+import { MiniPlayer } from './components/MiniPlayer'
 import { Library } from './components/Library'
 import { Playlists } from './components/Playlists'
 import { Settings } from './components/Settings'
@@ -12,11 +14,13 @@ function App() {
     currentView,
     isPlaying,
     volume,
+    miniMode,
     setIsPlaying,
     setVolume,
     nextTrack,
     prevTrack,
     currentTrack,
+    toggleMiniMode,
   } = useStore()
 
   // Apply theme class to body
@@ -60,11 +64,21 @@ function App() {
           break
         case 'm':
         case 'M':
-          setVolume(volume > 0 ? 0 : 0.8)
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault()
+            toggleMiniMode()
+          } else {
+            setVolume(volume > 0 ? 0 : 0.8)
+          }
+          break
+        case 'Escape':
+          if (miniMode) {
+            toggleMiniMode()
+          }
           break
       }
     },
-    [isPlaying, volume, currentTrack, setIsPlaying, setVolume, nextTrack, prevTrack]
+    [isPlaying, volume, currentTrack, miniMode, setIsPlaying, setVolume, nextTrack, prevTrack, toggleMiniMode]
   )
 
   useEffect(() => {
@@ -86,6 +100,21 @@ function App() {
     }
   }
 
+  // Mini mode render
+  if (miniMode) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center p-4 transition-theme"
+        style={{ backgroundColor: 'var(--bg-primary)' }}
+      >
+        <AnimatePresence mode="wait">
+          <MiniPlayer key="mini-player" />
+        </AnimatePresence>
+      </div>
+    )
+  }
+
+  // Full mode render
   return (
     <div
       className="h-screen flex flex-col transition-theme"
